@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<math.h>
+void sieve(int n)
+{
+	int p,a[n],i,j;
+	for(p=2;p<=n;p++)
+	a[p]=p;
+	for(p=2;p<=floor(sqrt(n));p++)
+	{
+		if(a[p]!=0)
+		{
+			j=p*p;
+			while(j<=n)
+			{
+				a[j]=0;
+				j=j+p;
+			}
+		}
+	}
+	printf("prime numbers are ");
+	for(p=2;p<=n;p++)
+	if(a[p]!=0)
+	printf("%d\t",a[p]);
+}
+int main()
+{
+	int n;
+	printf("enter the range n:");
+	scanf("%d",&n);
+	if(n<0)
+	printf("invalid input");
+	sieve(n);
+}
