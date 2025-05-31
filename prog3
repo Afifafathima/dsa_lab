@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<math.h>
+int place(int x[],int k)
+{
+	int i;
+	for(i=1;i<k;i++)
+	{
+		if((x[i]==x[k])||(abs(x[i]-x[k])==abs(i-k)));
+	     return 0;
+	}
+	return 1;
+}
+int nqueens(int n)
+{
+	int x[10],k,i,j,count=0;
+	k=1;
+	x[k]=0;
+	while(k!=0)
+	{
+		x[k]++;
+		while(x[k]<=n && place(x,k)==0)
+		x[k]++;
+		
+		if(x[k]<=n)
+		{
+			if(k==n)
+			{
+				printf("soln=%d\n",++count);
+				for(i=1;i<=n;i++)
+				{
+					for(j=1;j<=n;j++)
+						printf("%c",j==x[i]?'q':'x');
+					printf("\n");
+			
+				}
+			}
+			else
+			{
+				k=k+1;
+				x[k]=0;
+			}
+		}
+		else
+			k--;
+	}
+	return count;
+}
+void main()
+{
+	int n,res;
+	printf("enter the size\n");
+	scanf("%d",&n);
+	res=nqueens(n);
+	if(res==0)
+	printf("no solution");
+	else
+	printf("no of ss=%d\n",res);
+}
